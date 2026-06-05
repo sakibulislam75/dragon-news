@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import logo from '@/assets/user.png';
 import Image from 'next/image';
+import NavLink from './NavLink';
 
 const Navbar = () => {
    return (
@@ -14,13 +15,13 @@ const Navbar = () => {
             <div>
                <ul className="flex justify-center gap-4 md:gap-6 text-[#706F6F]">
                   <li>
-                     <Link href="/">Home</Link>
+                     <NavLink href="/">Home</NavLink>
                   </li>
                   <li>
-                     <Link href="/about">About</Link>
+                     <NavLink href="/about">About</NavLink>
                   </li>
                   <li>
-                     <Link href="/career">Career</Link>
+                     <NavLink href="/career">Career</NavLink>
                   </li>
                </ul>
             </div>
@@ -28,7 +29,7 @@ const Navbar = () => {
             {/* Right Side */}
             <div className="flex justify-center md:justify-end items-center gap-4">
                <Image src={logo} alt="Logo" width={50} height={50} className="rounded-full" />
-               <Link href="/login" className="btn bg-[#403f3f] text-white font-bold px-7">
+               <Link href="/login" className="btn bg-purple-600 text-white font-bold px-7">
                   Login
                </Link>
             </div>
