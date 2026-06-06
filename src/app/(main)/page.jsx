@@ -1,3 +1,5 @@
+import LeftSideBar from '@/components/homePage/news/LeftSideBar';
+import RightSideBar from '@/components/homePage/news/RightSideBar';
 import Image from 'next/image';
 const allCategory = async () => {
    try {
@@ -14,24 +16,16 @@ const allCategory = async () => {
 export default async function Home() {
    const allData = await allCategory();
    return (
-      <div className="container mx-auto  grid grid-cols-1 md:grid-cols-12 gap-4 my-8">
+      <div className="w-10/12 mx-auto  grid grid-cols-1 md:grid-cols-12 gap-4 my-8">
          <div className=" col-span-1 md:col-span-3">
-            <h1 className="font-bold text-3xl"> All Category</h1>
-            <ul className="flex flex-col gap-3 mt-6">
-               {allData.news_category.map((data) => (
-                  <li
-                     className="bg-slate-100 p-2 font-xl text-center rounded-md "
-                     key={data.category_id}
-                  >
-                     {data.category_name}
-                  </li>
-               ))}
-            </ul>
+            <LeftSideBar allData={allData} activeId={'03'} />
          </div>
          <div className="font-bold text-3xl bg-purple-500 col-span-1  md:col-span-6">
             Dragon News Home
          </div>
-         <div className="font-bold text-3xl bg-red-400 col-span-1 md:col-span-3">Login With</div>
+         <div className=" col-span-1 md:col-span-3">
+            <RightSideBar />
+         </div>
       </div>
    );
 }
