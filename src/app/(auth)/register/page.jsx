@@ -1,5 +1,7 @@
 import React from 'react';
-
+export const metadata = {
+   title: 'Dragon News || Register',
+};
 const RegisterPage = () => {
    return (
       <div>

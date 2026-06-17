@@ -1,5 +1,7 @@
 import Link from 'next/link';
-
+export const metadata = {
+   title: 'Dragon News || Not Found',
+};
 export default function NotFound() {
    return (
       <section className="min-h-screen flex items-center justify-center px-4">

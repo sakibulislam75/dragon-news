@@ -2,6 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getNewsDetails } from '@/lib/data';
 
+export async function generateMetadata({ params }) {
+   const { Id } = await params;
+   const news = await getNewsDetails(Id);
+   return {
+      title: news.title,
+   };
+}
+
 const NewsDetails = async ({ params }) => {
    const { Id } = await params;
    const news = await getNewsDetails(Id);
