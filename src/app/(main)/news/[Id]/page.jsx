@@ -7,6 +7,7 @@ export async function generateMetadata({ params }) {
    const news = await getNewsDetails(Id);
    return {
       title: news.title,
+      description: news.details,
    };
 }
 
