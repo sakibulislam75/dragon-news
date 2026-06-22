@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import React from 'react';
 import { montserrat } from '../layout';
 import { Bounce, ToastContainer } from 'react-toastify';
+import Header from '@/components/Header';
 
 const AuthLayout = ({ children }) => {
    return (

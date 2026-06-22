@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import React from 'react';
 import { CiFacebook, CiInstagram, CiTwitter } from 'react-icons/ci';
@@ -7,12 +8,18 @@ import qzone1 from '../../../assets/swimming.png';
 import qzone2 from '../../../assets/class.png';
 import qzone3 from '../../../assets/playground.png';
 import qzone4 from '../../../assets/bg.png';
+import { authClient } from '@/lib/auth-client';
 const RightSideBar = () => {
+   const handleGoogleSignIn = async () => {
+      const data = await authClient.signIn.social({
+         provider: 'google',
+      });
+   };
    return (
       <div>
          <h1 className="font-bold text-xl">Login With</h1>
          <div className="my-2.5 space-y-2">
-            <button className="btn  btn-outline btn-info w-full">
+            <button className="btn  btn-outline btn-info w-full" onClick={handleGoogleSignIn}>
                <FaGoogle /> Login With Google
             </button>
             <button className="btn  btn-outline w-full">

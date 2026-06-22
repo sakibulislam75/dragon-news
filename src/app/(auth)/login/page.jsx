@@ -1,81 +1,103 @@
 'use client';
-import { authClient } from '@/lib/auth-client';
-import React from 'react';
+
+import React, { useState } from 'react';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { authClient } from '@/lib/auth-client';
 
 const LogInPage = () => {
-   /*
-   const onSubmit = async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.currentTarget);
-      const userData = Object.fromEntries(formData.entries());
+   const [isShowPassword, setIsShowPassword] = useState(false);
 
-      console.log(userData);
-   };
-*/
    const {
       register,
       handleSubmit,
       formState: { errors },
    } = useForm();
+
    const onSubmit = async (data) => {
-      console.log(data);
-      const { data: res, error } = await authClient.signIn.email({
-         email: data.email, // required
-         password: data.password, // required
-         rememberMe: true,
-         callbackURL: '/',
-      });
-      console.log(res, error);
+      try {
+         const { data: res, error } = await authClient.signIn.email({
+            email: data.email,
+            password: data.password,
+            rememberMe: true,
+            callbackURL: '/',
+         });
+
+         console.log('Response:', res);
+         console.log('Error:', error);
+      } catch (err) {
+         console.error(err);
+      }
    };
 
    return (
-      <div className="h-[85vh] flex items-center justify-center bg-base-200">
+      <div className="h-[85Vh] flex items-center justify-center bg-base-200 px-4">
          <div className="w-full max-w-md bg-base-100 shadow-lg rounded-lg p-8">
-            {/* Title */}
-            <h2 className="text-xl font-semibold text-center mb-8">Login your account</h2>
+            <h2 className="text-2xl font-semibold text-center mb-8">Login Your Account</h2>
 
-            {/* Form */}
-            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                {/* Email */}
                <div>
                   <label className="label">
-                     <span className="label-text font-semibold">Email address</span>
+                     <span className="label-text font-semibold">Email Address</span>
                   </label>
+
                   <input
                      type="email"
                      placeholder="Enter your email address"
                      className="input input-bordered w-full"
-                     {...register('email', { required: 'Email is required' })}
+                     {...register('email', {
+                        required: 'Email is required',
+                     })}
                   />
-                  {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+
+                  {errors.email && (
+                     <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                  )}
                </div>
 
                {/* Password */}
                <div>
                   <label className="label">
-                     <span className="label-text">Password</span>
+                     <span className="label-text font-semibold">Password</span>
                   </label>
-                  <input
-                     type="password"
-                     placeholder="Enter your password"
-                     className="input input-bordered w-full"
-                     {...register('password', { required: 'Password is required' })}
-                  />
+
+                  <div className="relative">
+                     <input
+                        type={isShowPassword ? 'text' : 'password'}
+                        placeholder="Enter your password"
+                        className="input input-bordered w-full pr-12"
+                        {...register('password', {
+                           required: 'Password is required',
+                        })}
+                     />
+
+                     <button
+                        type="button"
+                        onClick={() => setIsShowPassword(!isShowPassword)}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+                     >
+                        {isShowPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                     </button>
+                  </div>
+
                   {errors.password && (
-                     <span className="text-red-500">{errors.password.message}</span>
+                     <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
                   )}
                </div>
 
-               {/* Button */}
-               <button className="btn btn-neutral w-full mt-2">Login</button>
+               {/* Login Button */}
+               <button type="submit" className="btn btn-neutral w-full">
+                  Login
+               </button>
 
-               {/* Footer */}
-               <p className="text-center text-sm mt-4">
-                  Don't Have An Account ?{' '}
-                  <a href="/register" className="text-red-500 font-medium">
-                     register
-                  </a>
+               {/* Register Link */}
+               <p className="text-center text-sm">
+                  Don't have an account?{' '}
+                  <Link href="/register" className="text-red-500 font-semibold">
+                     Register
+                  </Link>
                </p>
             </form>
          </div>
