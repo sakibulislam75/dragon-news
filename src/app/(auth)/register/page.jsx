@@ -1,6 +1,8 @@
 'use client';
 
 import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -12,6 +14,8 @@ const RegisterPage = () => {
       formState: { errors },
    } = useForm();
 
+   // etter Auth callbackURL often doesn't auto-redirect, so use router.push('/'); useRouter() is a Next.js hook for client-side navigation.
+   const router = useRouter();
    const onSubmit = async (data) => {
       const { name, photoURL, email, password } = data;
       console.log(data);
@@ -20,12 +24,13 @@ const RegisterPage = () => {
          email: email, // required
          password: password, // required
          image: photoURL,
-         callbackURL: '/login',
+         callbackURL: '/',
       });
       if (error) {
          toast.error(error.message);
       } else {
          toast.success('Successfully registered');
+         router.push('/');
       }
    };
 
