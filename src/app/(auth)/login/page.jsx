@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { authClient } from '@/lib/auth-client';
+import { toast } from 'react-toastify';
 
 const LogInPage = () => {
    const [isShowPassword, setIsShowPassword] = useState(false);
@@ -16,24 +17,19 @@ const LogInPage = () => {
    } = useForm();
 
    const onSubmit = async (data) => {
-      try {
-         const { data: res, error } = await authClient.signIn.email({
-            email: data.email,
-            password: data.password,
-            rememberMe: true,
-            callbackURL: '/',
-         });
+      const { data: res, error } = await authClient.signIn.email({
+         email: data.email,
+         password: data.password,
+         rememberMe: true,
+         callbackURL: '/',
+      });
 
-         console.log('Response:', res);
-         console.log('Error:', error);
-      } catch (err) {
-         console.error(err);
-      }
       if (error) {
          toast.error(error.message);
-      } else {
-         toast.success('Successfully logged-In');
+         return;
       }
+
+      toast.success('Successfully logged in');
    };
 
    return (
