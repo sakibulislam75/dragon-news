@@ -1,5 +1,9 @@
 import { Poppins, Montserrat } from 'next/font/google';
 import './globals.css';
+import dns from 'node:dns';
+
+// Use Google's DNS servers for Node.js DNS lookups
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 const poppins = Poppins({
    variable: '--font-poppins',

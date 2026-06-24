@@ -29,6 +29,11 @@ const LogInPage = () => {
       } catch (err) {
          console.error(err);
       }
+      if (error) {
+         toast.error(error.message);
+      } else {
+         toast.success('Successfully logged-In');
+      }
    };
 
    return (
