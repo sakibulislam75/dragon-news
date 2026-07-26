@@ -17,183 +17,91 @@ Stay informed with real-time news across categories — built for speed, securit
 
 ## 📖 Overview
 
-**Dragon News** is a modern news platform built with **Next.js** and **React**, offering a smooth, category-based news browsing experience. It integrates secure authentication via **Better Auth** — supporting Email, Google, and GitHub sign-in — and leverages **Next.js Route Groups** for clean, organized, and scalable routing.
-
-Whether you're catching up on world events, technology, sports, or entertainment, Dragon News delivers a fast, responsive, and personalized reading experience across desktop, tablet, and mobile.
+**Dragon News** is a modern news platform built with **Next.js** and **React**, offering category‑based browsing and secure authentication via **Better Auth** (Email, Google, GitHub). It uses **Next.js Route Groups** for clean routing and delivers a fast, responsive reading experience across all devices.
 
 ---
 
 ## ✨ Features
 
-- 📰 **Category-Based Browsing** — Explore news organized into clear, intuitive categories
-- 🔐 **Secure Authentication** — Sign in with Email, Google, or GitHub via Better Auth
-- ⚡ **Blazing Fast Performance** — Powered by Next.js for optimized rendering and load times
-- 📱 **Fully Responsive** — A seamless experience across all screen sizes and devices
-- 🗂️ **Organized Routing** — Clean architecture using Next.js Route Groups
-- 🔎 **Detailed Article View** — Dive into full news details with a single click
-- 🎨 **Polished, Modern UI** — Thoughtful design focused on readability and usability
+- 📰 Category‑based browsing
+- 🔐 Secure authentication (Email, Google, GitHub)
+- ⚡ Optimized performance with Next.js
+- 📱 Fully responsive design
+- 🗂️ Organized routing using Route Groups
+- 🔎 Detailed article view
+- 🎨 Modern UI with TailwindCSS, DaisyUI, HeroUI
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Category       | Technology                          |
-| -------------- | ----------------------------------- |
-| Framework      | Next.js                             |
-| UI Library     | React                               |
-| Authentication | Better Auth (Email, Google, GitHub) |
-| Styling        | Tailwind CSS                        |
-| API            | Programming Hero Open API           |
-| Deployment     | Vercel _(recommended)_              |
+- **Framework**: Next.js
+- **UI Library**: React
+- **Authentication**: Better Auth
+- **Styling**: Tailwind CSS, DaisyUI, HeroUI
+- **API**: Programming Hero Open API
+- **Deployment**: Vercel / Render / Netlify
 
 ---
 
 ## 🔌 API Reference
 
-Dragon News is powered by the **Programming Hero Open News API**.
+Base URL: `https://openapi.programming-hero.com/api`
 
-**Base URL**
-
-```
-https://openapi.programming-hero.com/api
-```
-
-### 1. Get All News Categories
-
-```http
-GET /news/categories
-```
-
-Retrieves a list of all available news categories.
-
-### 2. Get All News in a Category
-
-```http
-GET /news/category/{category_id}
-```
-
-Retrieves all news articles within a specified category.
-
-| Parameter     | Type   | Description                   |
-| ------------- | ------ | ----------------------------- |
-| `category_id` | string | The unique ID of the category |
-
-**Example:**
-
-```
-https://openapi.programming-hero.com/api/news/category/01
-```
-
-### 3. Get News Detail by ID
-
-```http
-GET /news/{news_id}
-```
-
-Retrieves detailed information about a specific news article.
-
-| Parameter | Type   | Description                       |
-| --------- | ------ | --------------------------------- |
-| `news_id` | string | The unique ID of the news article |
-
-**Example:**
-
-```
-https://openapi.programming-hero.com/api/news/0282e0e58a5c404fbd15261f11c2ab6a
-```
+- **Get All Categories** → `/news/categories`
+- **Get News by Category** → `/news/category/{category_id}`
+- **Get News Detail** → `/news/{news_id}`
 
 ---
 
-## 🚀 Getting Started
+## 🖼️ Layout Previews
 
-### Prerequisites
+<div align="center">
 
-Make sure you have the following installed:
+### 🔐 Authentication Layouts
 
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- npm / yarn / pnpm
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/dragon-news.git
-
-# Navigate into the project directory
-cd dragon-news
-
-# Install dependencies
-npm install
-
-# Run the development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
-
-### Environment Variables
-
-Create a `.env.local` file in the root directory and add the following:
-
-```env
-BETTER_AUTH_SECRET=your_secret_key
-BETTER_AUTH_URL=http://localhost:3000
-
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-
-GITHUB_CLIENT_ID=your_github_client_id
-GITHUB_CLIENT_SECRET=your_github_client_secret
-
-DATABASE_URL=your_database_connection_string
-```
+<table>
+  <tr>
+    <td align="center">
+      <b>Login Page</b><br>
+      <img src="./public/auth-layout-login.png" alt="Login Layout" width="350"/>
+    </td>
+    <td align="center">
+      <b>Register Page</b><br>
+      <img src="./public/auth-layout-register.png" alt="Register Layout" width="350"/>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 📁 Project Structure
+### 🏠 Home Layout
 
-```
-dragon-news/
-├── app/
-│   ├── (auth)/          # Authentication route group (login, register)
-│   ├── (main)/          # Main app route group (home, categories, news detail)
-│   └── layout.tsx
-├── components/          # Reusable UI components
-├── lib/                 # Utility functions & Better Auth config
-├── public/              # Static assets
-├── .env.local
-└── package.json
-```
+<table>
+  <tr>
+    <td align="center">
+      <b>Homepage</b><br>
+      <img src="./public/home-layout.png" alt="Home Layout" width="700"/>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🔐 Authentication
+### 📰 News Details Layout
 
-Dragon News uses **Better Auth** to provide secure, flexible sign-in options:
+<table>
+  <tr>
+    <td align="center">
+      <b>Article Details Page</b><br>
+      <img src="./public/news-details-layout.png" alt="News Details Layout" width="700"/>
+    </td>
+  </tr>
+</table>
 
-- ✅ Email & Password
-- ✅ Google OAuth
-- ✅ GitHub OAuth
-
-Authenticated users get a personalized reading experience across the platform.
-
----
-
-## 🤝 Contributing
-
-Contributions make the open-source community amazing. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+</div>
 
 ---
-
-## 📬 Contact
-
-Have questions or feedback? Feel free to reach out.
 
 <div align="center">
 
