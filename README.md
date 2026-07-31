@@ -40,7 +40,7 @@ Stay informed with real-time news across categories — built for speed, securit
 - **Authentication**: Better Auth
 - **Styling**: Tailwind CSS, DaisyUI, HeroUI
 - **API**: Programming Hero Open API
-- **Deployment**: Vercel / Render / Netlify
+- **Deployment**: Vercel / Render
 
 ---
 
